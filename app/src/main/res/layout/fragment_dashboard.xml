@@ -12,12 +12,14 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight=".10"
         android:layout_marginBottom="10dp"
         android:src="@drawable/logobrain"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight=".10"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:text="@string/what_to_remember"/>
@@ -26,20 +28,22 @@
         android:id="@+id/editTakeMPill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight=".25"
         android:hint="@string/take_my_pill"
         android:inputType="text"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight=".20"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:text="@string/when_do_you_want_to_do_it"/>
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_weight=".20">
         <TableRow>
             <TextView
                 android:layout_width="wrap_content"
@@ -51,9 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_height="wrap_content"/>
-        </TableRow>
 
-        <TableRow>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,7 +67,6 @@
                 android:layout_marginStart="30dp"
                 android:layout_height="wrap_content"/>
         </TableRow>
-
         <TableRow>
             <TextView
                 android:layout_width="wrap_content"
@@ -77,21 +78,18 @@
                 android:layout_width="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thursday"
+                android:textSize="20sp"/>
+            <CheckBox
+                android:id="@+id/checkThursday"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_height="wrap_content"/>
         </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/thursday"
-                    android:textSize="20sp"/>
-                <CheckBox
-                    android:id="@+id/checkThursday"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_height="wrap_content"/>
-            </TableRow>
-
-            <TableRow>
+        <TableRow>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,19 +100,18 @@
                     android:layout_width="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/saturday"
+                    android:textSize="20sp"/>
+                <CheckBox
+                    android:id="@+id/checkSaturday"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_height="wrap_content"/>
             </TableRow>
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/saturday"
-                        android:textSize="20sp"/>
-                    <CheckBox
-                        android:id="@+id/checkSaturday"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_height="wrap_content"/>
-                </TableRow>
         <TableRow>
             <TextView
                 android:layout_width="wrap_content"
@@ -132,6 +129,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight=".35"
         android:text="@string/at_what_time"
         android:textSize="20sp"
         android:textColor="@color/colorAccent"/>
@@ -139,6 +137,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight=".20"
         android:text="@string/set_time"
         android:background="?android:attr/selectableItemBackground"/>
 
