@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="56dp"
+    android:paddingHorizontal="30dp"
     tools:context=".ui.dashboard.DashboardFragment">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -173,7 +175,7 @@
                 android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:backgroundTint="@color/colorAccent"
                 android:paddingHorizontal="50dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
@@ -183,6 +185,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </LinearLayout>
