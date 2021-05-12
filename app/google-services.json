@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "536713674193",
+    "project_id": "mydigimind-71e18",
+    "storage_bucket": "mydigimind-71e18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536713674193:android:22ccc6bd6b03c71206b4f0",
+        "android_client_info": {
+          "package_name": "gamez.ana.mydigimind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536713674193-7sgt85mmecuosdh5j4dfpd1odd8b71v5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2sNXvoAA6eV1Gj1GzKRqgfuIgKgoEpvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536713674193-7sgt85mmecuosdh5j4dfpd1odd8b71v5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
