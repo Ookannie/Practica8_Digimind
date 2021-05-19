@@ -21,7 +21,7 @@ class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var storage: FirebaseFirestore
-    private lateinit var  usuario: FirebaseAuth
+    private lateinit var usuario: FirebaseAuth
 
 
     override fun onCreateView(
@@ -69,27 +69,33 @@ class DashboardFragment : Fragment() {
             var time = btn_time.text.toString()
             var days = ArrayList<String>()
 
-            if(cbMonday.isChecked)
-                days.add("Monday")
-            if(cbTuesday.isChecked)
-                days.add("Tuesday")
-            if(cbWednesday.isChecked)
-                days.add("Wednesday")
-            if(cbThursday.isChecked)
-                days.add("Thursday")
-            if(cbFriday.isChecked)
-                days.add("Friday")
-            if(cbSaturday.isChecked)
-                days.add("Saturday")
-            if(cbSunday.isChecked)
-                days.add("Sunday")
+            val actividad = hashMapOf(
+                    "actividad" to et_task.text.toString(),
+                    "email" to usuario.currentUser?.email.toString(),
+                    "do" to cbSunday.isChecked,
+                    "lu" to cbMonday.isChecked,
+                    "ma" to cbTuesday.isChecked,
+                    "mi" to cbWednesday.isChecked,
+                    "ju" to cbThursday.isChecked,
+                    "vi" to cbFriday.isChecked,
+                    "sa" to cbSaturday.isChecked,
+                    "do" to cbSunday.isChecked,
+                    "tiempo" to btn_time.toString()
+            )
 
 
-            var task = Task(title,days,time)
 
-            HomeFragment.tasks.add(task)
+            storage.collection("actividades")
+                    .add(actividad)
+                    .addOnSuccessListener {
+                        Toast.makeText(root.context, "new task added", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(root.context, "Error: try again", Toast.LENGTH_SHORT).show()
+                    }
 
-            Toast.makeText(root.context, "new task added", Toast.LENGTH_SHORT).show()
+
+
 
         }
 

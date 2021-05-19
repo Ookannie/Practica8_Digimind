@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import gamez.ana.mydigimind.AdaptadorTareas
 import gamez.ana.mydigimind.R
 import gamez.ana.mydigimind.Task
@@ -18,6 +21,10 @@ class HomeFragment : Fragment() {
 
     private var adaptador: AdaptadorTareas? = null
     private lateinit var homeViewModel: HomeViewModel
+
+    private lateinit var storage: FirebaseFirestore
+    private lateinit var usuario: FirebaseAuth
+    lateinit var gridView: GridView
 
     companion object{
         var tasks = ArrayList<Task>()
@@ -34,29 +41,58 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
         })
-        if(first){
+
+        tasks = ArrayList()
+        storage = FirebaseFirestore.getInstance()
+        usuario = FirebaseAuth.getInstance()
         fillTask()
-            first = false
-        }
-
-        adaptador = AdaptadorTareas(root.context, tasks)
-
-
         val gridView: GridView = root.findViewById(R.id.gridview)
+        if(!tasks.isEmpty()){
 
-        gridView.adapter = adaptador
+            adaptador = AdaptadorTareas(root.context, tasks)
+            gridView.adapter = adaptador
+        }
 
 
         return root
     }
 
     fun fillTask(){
-        tasks.add(Task("Practice 01", arrayListOf("Monday", "Sunday"), "17:30"))
-        tasks.add(Task("Practice 02", arrayListOf("Tuesday"), "17:40"))
-        tasks.add(Task("Practice 03", arrayListOf("Wednesday"), "14:30"))
-        tasks.add(Task("Practice 04", arrayListOf("Saturday"), "10:45"))
-        tasks.add(Task("Practice 05", arrayListOf("Friday"), "9:30"))
-        tasks.add(Task("Practice 06", arrayListOf("Thursday"), "8:00"))
-        tasks.add(Task("Practice 07", arrayListOf("Monday"), "8:45"))
+        storage.collection("actividades")
+            .whereEqualTo("email", usuario.currentUser?.email)
+            .get()
+            .addOnSuccessListener {
+                it.forEach{
+                    var dias = ArrayList<String>()
+                    if(it.getBoolean("lu") == true){
+                        dias.add("Monday")
+                    }
+                    if(it.getBoolean("ma") == true){
+                        dias.add("Tuesday")
+                    }
+                    if(it.getBoolean("mi") == true){
+                        dias.add("Wednesday")
+                    }
+                    if(it.getBoolean("ju") == true){
+                        dias.add("Thursday")
+                    }
+                    if(it.getBoolean("vi") == true){
+                        dias.add("Friday")
+                    }
+                    if(it.getBoolean("sa") == true){
+                        dias.add("Saturday")
+                    }
+                    if(it.getBoolean("do") == true){
+                        dias.add("Sunday")
+                    }
+                    tasks!!.add(Task(it.getString("actividad")!!, dias, it.getString("tiempo")!!))
+                }
+                adaptador = AdaptadorTareas(requireContext(), tasks)
+                gridView.adapter = adaptador
+            }
+            .addOnFailureListener{
+                Toast.makeText(context, "Error: try again", Toast.LENGTH_SHORT)
+            }
+
     }
 }
