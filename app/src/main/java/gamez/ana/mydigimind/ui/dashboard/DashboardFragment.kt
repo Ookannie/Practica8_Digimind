@@ -9,6 +9,8 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import gamez.ana.mydigimind.R
 import gamez.ana.mydigimind.Task
 import gamez.ana.mydigimind.ui.home.HomeFragment
@@ -18,6 +20,9 @@ import java.util.*
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var storage: FirebaseFirestore
+    private lateinit var  usuario: FirebaseAuth
+
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -29,6 +34,9 @@ class DashboardFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
         })
+
+        storage = FirebaseFirestore.getInstance()
+        usuario = FirebaseAuth.getInstance()
 
 
         val btn_time: Button = root.findViewById(R.id.btn_time)
